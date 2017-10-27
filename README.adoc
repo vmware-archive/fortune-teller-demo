@@ -23,6 +23,8 @@ However, it is most easily deployed to Pivotal Cloud Foundry environments that h
 . Using Maven, build and package the application:
 +
 ----
+$ git clone [REPO]
+$ cd [REPO]
 $ ./mvnw package
 ----
 +
