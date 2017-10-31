@@ -1,0 +1,155 @@
+= Config Server 
+
+You'll learn how to provision and deploy an application that uses a Config Server to externalize it's configuration properties
+
+== Building
+
+. If you haven't already built this project, use the Maven Wrapper to build and package the application:
++
+----
+$ git clone [REPO]
+$ cd [REPO]
+$ ./mvnw package
+----
+
+== Deploying to Pivotal Cloud Foundry with Spring Cloud Services
+
+. Run `scripts/create-services_pcf.sh` to create the services that you need on Pivotal Cloud Foundry:
++
+----
+$ ./create_services_pcf.sh
+Creating service fortune-db in org microservices / space fortune-teller as admin...
+OK
+Creating service config-server in org microservices / space fortune-teller as admin...
+OK
+
+Create in progress. Use 'cf services' or 'cf service config-service' to check operation status.
+Creating service service-registry in org microservices / space fortune-teller as admin...
+OK
+
+Create in progress. Use 'cf services' or 'cf service service-registry' to check operation status.
+Creating service circuit-breaker in org microservices / space fortune-teller as admin...
+OK
+
+Create in progress. Use 'cf services' or 'cf service circuit-breaker' to check operation status.
+----
+
+. Wait until the config-server, service-registry and circuit-breaker services have been created. Use the command cf services and wait until the last operation for these services is create succeeded. This might take a few minutes.  
+
+. Edit the `manifest-pcf.yml` file to specify the Cloud Foundry target the apps are being pushed to, *replacing the URL* in `TRUST_CERTS: api.sys.cloud.rick-ross.com` with the API endpoint for your Cloud Foundry deployment.
+
+. Push the microservices:
+
++
+----
+$ cf push -f manifest-pcf.yml
+----
++
+This will push the fortunes service and the ui application and bind all of the services.
+
+== Walkthrough
+
+Spring Cloud Services contains a set of key features that are critical when leveraging Microservices. Pivotal, in partnership with Netflix, have made it even easier for developers to use these capabilities. 
+
+Traditionally developers bundle configuration within the application, typically in the form of properties files. These property files would be bundled up with the application binary and deployed. The challenge was that these property files contain environment specific values, which is critical to make sure that your production environment only uses the production systems. Similarly, other environments needed values specific to them. The typical solution was either to unpack the application binary (e.g. JAR, WAR and/or EAR) changing the values and then packing it back up, or doing another build with using a different properties files. 
+
+While this works, it makes automating your CI/CD pipelines more complex than they need to be. What if you could retrieve application configuration information from a git repository? And when that repository is updated, refresh the configuration without starting your application? 
+
+With Spring Cloud Services - Config Server, you can do exactly that. 
+
+Let's see what that looks like. 
+
+First, let's see what the application looks like when everything is working. Navigate to the application URL in a browser. It should look similar to this:
+
+image::fortunetellerrunningnormally.png[]
+
+In particular, notice the fortune, in this case it is "You learn from your mistakes... You will learn a lot today."
+
+Now let's learn more about Spring Cloud Services - Config Server.
+
+By default, when the create_services-pf.sh script is run, it sets the configuration server to link:https://github.com/Pivotal-Field-Engineering/fortune-teller-demo-config-repo[Demo Config Repository]. Inside of this repository is an application.yml file that provides a default response if the fortune service is unavailable. 
+
+The Config Service is available within the Applications Manager. Login to Apps Manager and navigate to the Org and Space where the application is deployed.
+
+image::appmanager.png[]
+
+Click on the Services tab and then on the Config Server.
+
+image::configserver.png[]
+
+This will open up the details for the Configuration Server, showing which applications are bound to it, as well as additional information regarding the configuration.
+
+image::configserveroverview.png[]
+
+Click on the Manage link in the upper right. Use your credentials to log in if necessary. You can now see the configuration of this specific instance the configuration server.
+
+image::configserversettings.png[]
+
+When the Fortune Teller UI application starts up, it retrieves it's configuration from the Config Server. The Config Server, retrieves that configuration information from the backing git repository. 
+
+Click the link:https://github.com/Pivotal-Field-Engineering/fortune-teller-demo-config-repo/blob/master/application.yml[Configuration Repository] link. You'll see the configuration that the Fortune UI application uses when it cannot establish a connection to the Fortune Service application.  
+
+image::gitrepodemoconfig.png[]
+
+Now edit this file by clicking the pencil icon in the upper right of the edit area.
+
+Change the value of the fallbackFortune to something like this
+
+```
+fortune:
+  fallbackFortune: Your future is unclear at the moment.
+```
+
+Scroll down and put in a commit message and Commit the change directly to the master branch and commit the changes.
+
+image::commitmessage.png[]
+
+Now, let's stop the fortune-service application. You can do this from the App Manager or from the command line. These instructions will show using the CF CLI command to stop the server.
+
+```bash
+cf stop fortune-service
+Stopping app fortune-service in org pivotal / space test as rross@pivotal.io...
+OK
+```
+
+Go back and visit the Fortune Teller application in a browser.
+
+image::fortunetellerdefaultdownmessage.png[]
+
+Notice that this message reflects the value that was in the Git Repository when the application started up. To inform the application to retreive the application configuration again, we need to hit a special endpoint on the Fortune UI application. Specifically, an empty POST request needs to be sent to the /refresh endpoint. Using curl the command looks like this:
+
+```bash
+$ curl -k -X POST https://fortunes-ui-treacherous-subpanel.app.cloud.rick-ross.com/refresh
+["config.client.version","fortune.fallbackFortune"]
+```
+
+Now when you revisit the Fortune Teller UI in the browser and refresh, you get the message that was stored in the git repository:
+
+image::fortunetellernewmessage.png[]
+
+After starting the Fortune Service back up, either from the command line, shown below, or from the Apps Manager
+
+```bash
+$ cf start fortune-service
+Starting app fortune-service in org pivotal / space test as rross@pivotal.io...
+
+Waiting for app to start...
+```
+
+And visiting the Fortune Teller UI in the browser and refreshing, you now get a non-default message:
+
+image::fortunetellerbacktonormal.png[]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
