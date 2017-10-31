@@ -1,6 +1,6 @@
 ---
 instances: 1
-memory: 768M
+memory: 1G 
 applications:
 - name: fortune-service
   host: fortunes
@@ -18,4 +18,4 @@ applications:
   - circuit-breaker
 env:
   SPRING_PROFILES_ACTIVE: pcf
-  TRUST_CERTS: api.sys.pcf.space
+  TRUST_CERTS: api.sys.cloud.rick-ross.com
