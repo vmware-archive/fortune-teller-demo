@@ -127,6 +127,8 @@ Now when you revisit the Fortune Teller UI in the browser and refresh, you get t
 
 image::fortunetellernewmessage.png[]
 
+How did that actually work? If you take a look in the FortuneProperties.java file, there is a @RefreshScope annotation on the class. This attribute signals Spring that if there is a refresh event it's configuration should be retreived again. For more information on this topic, look link:http://cloud.spring.io/spring-cloud-static/docs/1.0.x/spring-cloud.html#_refresh_scope[here]
+
 After starting the Fortune Service back up, either from the command line, shown below, or from the Apps Manager
 
 ```bash
