@@ -3,6 +3,6 @@
 The Fortune Teller applications are designed to use the services provided Spring Cloud Services. This includes Config Server, Circuit Breaker and Service Registry
 
 * link:ConfigServer/demo_config_server.adoc[Config Server]
-* Service Registry
+* link:ServiceRegistry/demo_service_registry.adoc[Service Registry]
 * Circuit Breaker
 
