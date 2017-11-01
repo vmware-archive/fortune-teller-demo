@@ -172,4 +172,7 @@ image::serviceregistrystatus.png[]
 
 Notice that there are two applications that the Service Registry knows about: FORTUNES and UI, which correspond to the Fortunes Service and the Fortune UI applications. They both show a status of up and that there is only 1 instance of each running. 
 
+=== Conclusion
+
+We've just demonstrated that with Spring Cloud Services - Service Registry, it is trivial to provide location of other services and avoiding hard coding of any URLs. Using the same code in the producer and consumer applications, Pivotal Cloud Foundry, Spring Cloud Services and Netflix make it easy to join the future of microservices based architetures. 
 

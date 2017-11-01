@@ -142,16 +142,6 @@ And visiting the Fortune Teller UI in the browser and refreshing, you now get a 
 
 image::fortunetellerbacktonormal.png[]
 
+=== Conclusion
 
-
-
-
-
-
-
-
-
-
-
-
-
+We've just demonstrated that with Spring Cloud Services - Config Server, you can easily move configuration from your microservices into a git repository so you can track who makes what changes over time. In addition, we demonstrated how you can refresh the configuration without restarting your application, eliminating downtime. Pivotal Cloud Foundry, Spring Cloud Services and Netflix are a powerful combination, helping developers to be more efficient with their time.

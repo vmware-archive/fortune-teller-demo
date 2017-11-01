@@ -4,5 +4,5 @@ The Fortune Teller applications are designed to use the services provided Spring
 
 * link:ConfigServer/demo_config_server.adoc[Config Server]
 * link:ServiceRegistry/demo_service_registry.adoc[Service Registry]
-* Circuit Breaker
+* link:CircuitBreaker/demo_circuit_breaker.adoc[Circuit Breaker]
 
