@@ -15,7 +15,7 @@ $ ./mvnw package
 
 == Deploying to Pivotal Cloud Foundry with Spring Cloud Services
 For the Spring One Conference:
-Run scripts/create-services_S1P.sh to create the services that you need on Pivotal Cloud Foundry. This script is for the 2017 Spring One Platform Conference, and we will be using the github repo: https://github.com/S1PDemo/config-repo. For the conference, you will need to login to the S1PDemo github account, to change the file. More on that later.
+Run scripts/create-services_S1P.sh to create the services that we need on Pivotal Cloud Foundry. This script is for the 2017 Spring One Platform Conference, and we will be using the github repo: https://github.com/S1PDemo/config-repo. For the conference, you will need to login to the S1PDemo github account, to change the file. More on that later.
 
 Or
 
