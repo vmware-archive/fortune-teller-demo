@@ -2,65 +2,6 @@
 
 You'll learn how to provision and deploy an application that uses a Config Server to externalize it's configuration properties
 
-
-
-== Building
-clone and build the project, use the Maven Wrapper to build and package the application:
-+
-----
-$ git clone [REPO]
-$ cd [REPO]
-$ ./mvnw package
-----
-
-== Deploying to Pivotal Cloud Foundry with Spring Cloud Services
-For the Spring One Conference:
-Run scripts/create-services_S1P.sh to create the services that we need on Pivotal Cloud Foundry. This script is for the 2017 Spring One Platform Conference, and we will be using the github repo: https://github.com/S1PDemo/config-repo. For the conference, you will need to login to the S1PDemo github account, to change the file. More on that later.
-
-Or
-
-If you are running this demo as a Platform Architect, you will want to fork the config repo  
-
-https://github.com/Pivotal-Field-Engineering/fortune-teller-demo-config-repo
-
-using your own github account and then modify the create-services_PCF.sh or create-services_PWS.sh script to point at the correct repo, and correct mysql service.
-
-. Run `scripts/create-services_S1P.sh` (or the appropriate create-services script) to create the services that you need on Pivotal Cloud Foundry:
-+
-----
-$ ./create_services_S1P.sh 
-Creating service instance fortunes-db in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
-OK
-Creating service instance config-service in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
-OK
-
-Create in progress. Use 'cf services' or 'cf service config-service' to check operation status.
-Creating service instance service-registry in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
-OK
-
-Create in progress. Use 'cf services' or 'cf service service-registry' to check operation status.
-Creating service instance circuit-breaker in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
-OK
-
-Create in progress. 
-
-Use 'cf services' or 'cf service circuit-breaker' to check operation status.
-
-----
-
-. Wait until the config-server, service-registry and circuit-breaker services have been created. Use the command cf services and wait until the last operation for these services is create succeeded. This might take a few minutes.  
-
-. Edit the `manifest-pcf.yml` file to specify the Cloud Foundry target the apps are being pushed to, *replacing the URL* in `TRUST_CERTS: api.sys.cloud.rick-ross.com` with the API endpoint for your Cloud Foundry deployment.
-
-. Push the microservices:
-
-+
-----
-$ cf push -f manifest-pcf.yml
-----
-+
-This will push the fortunes service and the ui application and bind all of the services.
-
 == Walkthrough
 
 Spring Cloud Services contains a set of key features that are critical when leveraging Microservices. Pivotal, in partnership with Netflix, have made it even easier for developers to use these capabilities. 
