@@ -1,6 +1,6 @@
 = Config Server 
 
-You'll learn how to provision and deploy an application that uses a Config Server to externalize it's configuration properties
+You'll learn how to provision and deploy an application that uses a Config Server to externalize it's configuration properties. To start the services and applications, You can follow instructions here: https://github.com/Pivotal-Field-Engineering/fortune-teller-demo
 
 == Walkthrough
 
