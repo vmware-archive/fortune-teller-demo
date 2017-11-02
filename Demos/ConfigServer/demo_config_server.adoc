@@ -101,6 +101,10 @@ image::configserversettings.png[]
 
 When the Fortune Teller UI application starts up, it retrieves it's configuration from the Config Server. The Config Server, retrieves that configuration information from the backing git repository. 
 
+For the 2017 Spring One Conference, we will want to log into github with the S1PDemo credentials (paasw0rd!) to modify the  application.yml file
+
+or if you have forked the config repo, you will want to go to your forked repo and modify the application.yml file i that location
+
 Click the link:https://github.com/Pivotal-Field-Engineering/fortune-teller-demo-config-repo/blob/master/application.yml[Configuration Repository] link. You'll see the configuration that the Fortune UI application uses when it cannot establish a connection to the Fortune Service application.  
 
 image::gitrepodemoconfig.png[]
