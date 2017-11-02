@@ -32,25 +32,38 @@ Maven will automatically download all of _Fortune Teller_'s dependencies. This m
 
 
 == Deploying to Pivotal Cloud Foundry with Spring Cloud Services
+For the Spring One Conference:
+Run scripts/create-services_S1P.sh to create the services that we need on Pivotal Cloud Foundry. This script is for the 2017 Spring One Platform Conference, and we will be using the github repo: https://github.com/S1PDemo/config-repo. For the conference, you will need to login to the S1PDemo github account, to change the file. More on that later.
 
-. Run `scripts/create_services_pcf.sh` to create the services that you need on Pivotal Cloud Foundry. Run `scripts/create_services_pws.sh` if you are running on PWS. 
+Or
+
+If you are running this demo as a Platform Architect, you will want to fork the config repo  
+
+https://github.com/Pivotal-Field-Engineering/fortune-teller-demo-config-repo
+
+using your own github account and then modify the create-services_PCF.sh or create-services_PWS.sh script to point at the correct repo, and correct mysql service.
+
+. Run `scripts/create-services_S1P.sh` (or the appropriate create-services script) to create the services that you need on Pivotal Cloud Foundry:
 +
 ----
-$ ./create_services_pcf.sh
-Creating service fortune-db in org microservices / space fortune-teller as admin...
+$ ./create_services_S1P.sh 
+Creating service instance fortunes-db in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
 OK
-Creating service config-server in org microservices / space fortune-teller as admin...
+Creating service instance config-service in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
 OK
 
 Create in progress. Use 'cf services' or 'cf service config-service' to check operation status.
-Creating service service-registry in org microservices / space fortune-teller as admin...
+Creating service instance service-registry in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
 OK
 
 Create in progress. Use 'cf services' or 'cf service service-registry' to check operation status.
-Creating service circuit-breaker in org microservices / space fortune-teller as admin...
+Creating service instance circuit-breaker in org S1Pdemo1 / space fortune-teller-demo as s1pcfdemo1@gmail.com...
 OK
 
-Create in progress. Use 'cf services' or 'cf service circuit-breaker' to check operation status.
+Create in progress. 
+
+Use 'cf services' or 'cf service circuit-breaker' to check operation status.
+
 ----
 
 . Wait until the config-server, service-registry and circuit-breaker services have been created. Use cf services and wait until the last operation for these services is create succeeded. This might take a few minutes.  
