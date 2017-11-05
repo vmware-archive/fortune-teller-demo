@@ -114,7 +114,7 @@ public class FortuneService {
 }
 
 ```
-In the _randomFortune()_ method, notice the URL used to reference the Fortune Services. It's not like a standard domain name and port (e.g. "https://mylongdomainname.com:8080"), but instead is simply called called "fortunes". This is the friendly name that the Service Registry uses to return back the URI to the fortune service. 
+In the _randomFortune()_ method, notice the URL used to reference the Fortune Services. It's not like a standard domain name and port (e.g. "https://mylongdomainname.com:8080/random"), but instead is simply called called "fortunes". This is the friendly name that the Service Registry uses to return back the URI to the fortune service. 
 
 === Fortune Service
 
