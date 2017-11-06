@@ -114,7 +114,7 @@ Login to Apps Manager and navigate to the Org and Space where the application is
 
 image::appmanager.png[]
 
-Click on the Services tab and then on the Serivces Registry.
+Click on the Services tab and then on the Services Registry.
 
 image::appmgrservicestab.png[]
 
