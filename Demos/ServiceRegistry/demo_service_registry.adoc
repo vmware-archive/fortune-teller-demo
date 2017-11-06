@@ -1,51 +1,7 @@
 = Service Registry
 
-You'll learn how to use the Service Registry to avoid hard coding URLs in applications. 
+You'll learn how to use the Service Registry to avoid hard coding URLs in applications. To start the services and applications, You can follow instructions here: https://github.com/Pivotal-Field-Engineering/fortune-teller-demo
 
-== Building
-
-. If you haven't already built this project, use the Maven Wrapper to build and package the application:
-+
-----
-$ git clone [REPO]
-$ cd [REPO]
-$ ./mvnw package
-----
-
-== Deploying to Pivotal Cloud Foundry with Spring Cloud Services
-
-. Run `scripts/create-services_pcf.sh` to create the services that you need on Pivotal Cloud Foundry:
-+
-----
-$ ./create_services_pcf.sh
-Creating service fortune-db in org microservices / space fortune-teller as admin...
-OK
-Creating service config-server in org microservices / space fortune-teller as admin...
-OK
-
-Create in progress. Use 'cf services' or 'cf service config-service' to check operation status.
-Creating service service-registry in org microservices / space fortune-teller as admin...
-OK
-
-Create in progress. Use 'cf services' or 'cf service service-registry' to check operation status.
-Creating service circuit-breaker in org microservices / space fortune-teller as admin...
-OK
-
-Create in progress. Use 'cf services' or 'cf service circuit-breaker' to check operation status.
-----
-
-. Wait until the config-server, service-registry and circuit-breaker services have been created. Use the command cf services and wait until the last operation for these services is create succeeded. This might take a few minutes.  
-
-. Edit the `manifest-pcf.yml` file to specify the Cloud Foundry target the apps are being pushed to, *replacing the URL* in `TRUST_CERTS: api.sys.cloud.rick-ross.com` with the API endpoint for your Cloud Foundry deployment.
-
-. Push the microservices:
-
-+
-----
-$ cf push -f manifest-pcf.yml
-----
-+
-This will push the fortunes service and the ui application and bind all of the services.
 
 == Walkthrough
 
