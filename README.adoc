@@ -1,14 +1,13 @@
 = Fortune Teller
 
-*Fortune Teller* is a very basic application composed of two services:
+*Fortune Teller* is an application composed of two services:
 
 . link:fortune-teller-fortune-service[Fortune Service] - serves up random Chinese fortune cookie fortunes
 . link:fortune-teller-ui[Fortune UI] - presents a UI that consumes the fortune service
 
-It leverages libraries and services from Spring Cloud and Netflix OSS to compose the system.
+These applications leverage libraries and services from Spring Cloud and Netflix OSS to demonstrate powerful practices when writing Cloud Native applications. 
 
-Fortune Teller is deployable to any Cloud Foundry environment utilizing the service components that have been packaged with the project.
-However, it is most easily deployed to Pivotal Cloud Foundry environments that have installed the https://network.pivotal.io/products/p-spring-cloud-services[Spring Cloud Services] package.
+Fortune Teller is deployable to any Cloud Foundry environment utilizing the service components that have been packaged with the project. However, it is most easily deployed to Pivotal Cloud Foundry environments that have installed the https://network.pivotal.io/products/p-spring-cloud-services[Spring Cloud Services] package.
 
 == Getting Started
 
@@ -66,9 +65,9 @@ Use 'cf services' or 'cf service circuit-breaker' to check operation status.
 
 ----
 
-. Wait until the config-server, service-registry and circuit-breaker services have been created. Use cf services and wait until the last operation for these services is create succeeded. This might take a few minutes.  
+. *Wait* until the config-server, service-registry and circuit-breaker services have been created. Use cf services and wait until the last operation for these services is create succeeded. This might take a few minutes.  
 
-. Edit the `manifest-pcf.yml` file to specify the Cloud Foundry target the apps are being pushed to, **replacing the URL** in `TRUST_CERTS: https://api.sys.cloud.rick-ross.com` with the API endpoint for your Cloud Foundry deployment.
+. Edit the `manifest-pcf.yml` file to specify the Cloud Foundry target the apps are being pushed to, **replacing the URL** in `TRUST_CERTS: api.sys.cloud.rick-ross.com` with the API endpoint for your Cloud Foundry deployment. This step is required to handle self-signed certificates.
 
 . Push the microservices:
 
@@ -79,4 +78,4 @@ $ cf push -f manifest-pcf.yml
 +
 This will push the fortunes service and the ui application and bind all of the services.
 
-The demos for this project are located link:Demos/README.adoc[here]
+The demos for this project are located link:Labs/README.adoc[here]
