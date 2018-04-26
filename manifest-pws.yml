@@ -1,21 +1,26 @@
 ---
-instances: 1
-memory: 1G 
 applications:
 - name: fortune-service
-  host: fortunes-${random-word} 
+  random-route: true
+  instances: 1
+  memory: 1G 
   path: fortune-teller-fortune-service/target/fortune-teller-fortune-service-0.0.1-SNAPSHOT.jar
   services:
   - fortunes-db
   - config-service
   - service-registry
+  env:
+    SPRING_PROFILES_ACTIVE: pcf
+    TRUST_CERTS: api.run.pivotal.io
 - name: fortune-ui
-  host: fortunes-ui-${random-word} 
+  random-route: true
+  instances: 1
+  memory: 1G 
   path: fortune-teller-ui/target/fortune-teller-ui-0.0.1-SNAPSHOT.jar
   services:
   - config-service
   - service-registry
   - circuit-breaker
-env:
-  SPRING_PROFILES_ACTIVE: pcf
-  TRUST_CERTS: api.run.pivotal.io
+  env:
+    SPRING_PROFILES_ACTIVE: pcf
+    TRUST_CERTS: api.run.pivotal.io
