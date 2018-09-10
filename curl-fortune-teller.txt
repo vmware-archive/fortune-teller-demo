@@ -1,0 +1,1 @@
+curl -k -X POST https://fortune-ui-empathic-cat.apps.pb-demo.com/refresh

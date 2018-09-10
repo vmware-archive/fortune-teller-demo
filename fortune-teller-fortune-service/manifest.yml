@@ -1,13 +1,14 @@
 ---
-memory: 384M
-instances: 1
 applications:
 - name: fortune-service
-  host: fortunes-${random-word}
+  memory: 1G
+  instances: 1
+  random-route: true
   path: target/fortune-teller-fortune-service-0.0.1-SNAPSHOT.jar
   services:
-  - fortune-db
+  - fortunes-db
   - config-service
   - service-registry
   env:
-    SPRING_PROFILES_ACTIVE: pws
+    SPRING_PROFILES_ACTIVE: pcf
+    TRUST_CERTS: api.run.pivotal.io

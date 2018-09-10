@@ -1,14 +1,14 @@
 ---
+instances: 1
+memory: 1G 
 applications:
 - name: fortune-ui
-  instances: 1
-  memory: 1G
   random-route: true
   path: target/fortune-teller-ui-0.0.1-SNAPSHOT.jar
   services:
   - config-service
   - service-registry
   - circuit-breaker
-  env:
-    #SPRING_PROFILES_ACTIVE: pcf
-    TRUST_CERTS: api.run.pivotal.io
+env:
+  SPRING_PROFILES_ACTIVE: pcf
+  TRUST_CERTS: api.run.pivotal.io

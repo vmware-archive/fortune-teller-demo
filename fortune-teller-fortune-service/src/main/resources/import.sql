@@ -1,7 +1,7 @@
 insert into fortunes (id, text) values (1000, 'People are naturally attracted to you.');
 insert into fortunes (id, text) values (1001, 'You learn from your mistakes... You will learn a lot today.');
-insert into fortunes (id, text) values (1002, 'If you have something good in your life, don't let it go!');
-insert into fortunes (id, text) values (1003, 'What ever you're goal is in life, embrace it visualize it, and for it will be yours.');
+insert into fortunes (id, text) values (1002, 'If you have something good in your life, don''t let it go!');
+insert into fortunes (id, text) values (1003, 'What ever you''re goal is in life, embrace it visualize it, and for it will be yours.');
 insert into fortunes (id, text) values (1004, 'Your shoes will make you happy today.');
 insert into fortunes (id, text) values (1005, 'You cannot love life until you live the life you love.');
 insert into fortunes (id, text) values (1006, 'Be on the lookout for coming events; They cast their shadows beforehand.');

@@ -6,4 +6,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/mstine/config-repo.git
+          uri: https://github.com/pberman-pivotal/fortune-teller-demo-config-repo.git

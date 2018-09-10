@@ -1,3 +1,7 @@
-spring:
-  application:
-    name: ui
+#spring:
+  #application:
+    #name: ui
+  #cloud:
+    #config:
+      #uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
+      #uri: http://config-server-timely-panther.cfapps.io/

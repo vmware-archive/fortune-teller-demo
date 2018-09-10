@@ -1,39 +1,39 @@
-server:
-  port: 8081
+#server:
+ # port: 8081
 
-eureka:
-  client:
-    registryFetchIntervalSeconds: 5
+#eureka:
+ # client:
+  #  registryFetchIntervalSeconds: 5
 
-ribbon:
-  IsSecure: false
+#ribbon:
+ # IsSecure: false
 
-fortunes:
-  ribbon:
-    ServerListRefreshInterval: 5000
+#fortunes:
+ # ribbon:
+  #  ServerListRefreshInterval: 5000
 
-security:
-  basic:
-    enabled: false
+#security:
+ # basic:
+  #  enabled: false
 
-management:
-  security:
-    enabled: false
+#management:
+ # security:
+  #  enabled: false
 
 ---
 
-spring:
-  profiles: pact
+#spring:
+ # profiles: pact
 
-ribbon:
-  eureka:
-    enabled: false
+#ribbon:
+ # eureka:
+  #  enabled: false
 
-hystrix:
-  command:
-    randomFortune:
-      execution.isolation.thread.timeoutInMilliseconds: 2000
+#hystrix:
+ # command:
+  #  randomFortune:
+   #   execution.isolation.thread.timeoutInMilliseconds: 2000
 
-fortunes:
-  ribbon:
-    listOfServers: localhost:8080
+#fortunes:
+ # ribbon:
+  #  listOfServers: localhost:8080
