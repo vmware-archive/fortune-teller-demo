@@ -31,8 +31,16 @@ Maven will automatically download all of _Fortune Teller_'s dependencies. This m
 
 
 == Deploying to Pivotal Cloud Foundry with Spring Cloud Services
-For the Spring One Conference:
-Run scripts/create-services_S1P.sh to create the services that we need on Pivotal Cloud Foundry. This script is for the 2017 Spring One Platform Conference, and we will be using the github repo: https://github.com/S1PDemo/config-repo. For the conference, you will need to login to the S1PDemo github account, to change the file. More on that later.
+For the Spring One Conference 2018:
+We will run scripts/create_services_S1P-2018.sh to create the services that we need on Pivotal Cloud Foundry, on PWS. This script is for the 2018 Spring One Platform Conference, and we will be using the github repo: https://github.com/S1PDemo/config-repo. For the conference, you will need to login to the S1PDemo github account, to change the file. Please note, that we will be using git subdirs , and search paths, to keep the configs separate. For example, the command to create the config server for S1Pdemo1 looks like:
+
+cf cs p-config-server trial config-service -c '{ "git": { "uri": "https://github.com/S1PDemo/config-repo.git","searchPaths": "S1PDemo1" }}' 
+
+for S1Pdemo2
+
+cf cs p-config-server trial config-service -c '{ "git": { "uri": "https://github.com/S1PDemo/config-repo.git","searchPaths": "S1PDemo2" }}' 
+
+and so on. These are using the SCS "trial" plan, and will therefore expire in 1 week, on Friday of the show.
 
 Or
 
